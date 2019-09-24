@@ -22,6 +22,4 @@ app.get('/list', (req, res) => {
     res.send(w);
 });
 
-// TODO метод обработки запроса здесь
-
 app.listen(3000, () => console.log('port 3000'));
