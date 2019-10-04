@@ -10,6 +10,7 @@ const UsersList = ({ data, deleteUser }) => (
             <p>{`Second name: ${item.secondName}`}</p>
             <p>{`Email: ${item.email}`}</p>
             <button onClick={deleteUser(item.firstName)}>Удалить</button>
+            <button>Изменить</button>
           </li>
         ))}
       </ul>

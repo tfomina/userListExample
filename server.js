@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 // TODO users to data.js
 let users = [
   {
+    //TODO id
     firstName: 'Pavel',
     secondName: 'Efimov',
     email: 'test@gmail.com'
