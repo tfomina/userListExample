@@ -1,42 +1,59 @@
 import React, { Component } from 'react';
 
-import { createUser } from '../sources/users';
+import { createUser } from 'source';
 
+import { showError } from 'utils';
 
 class Form extends Component {
-    onSubmit(e) {
-        e.preventDefault();
+  constructor(props) {
+    super(props);
 
-        createUser({ firstName: 'test name' }).then(res => console.log('res: ', res));
-    }
+    this.state = {
+      firstName: '',
+      secondName: '',
+      email: ''
+    };
 
-    render() {
-        return (
-            <form onSubmit={this.onSubmit}>
-                <label>
-                    Имя
-                    <input type="text" />
-                </label>
-                <label>
-                    Фамилия
-                    <input type="text" />
-                </label>
-                <label>
-                    Телефон
-                    <input type="tel" />
-                </label>
-                <label>
-                    Email
-                    <input type="email" />
-                </label>
-                <label>
-                    Возраст
-                    <input type="number" />
-                </label>
-                <button>Сохранить</button>
-            </form>
-        )
-    }
+    this.changeValue = this.changeValue.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  changeValue = field => ({ target }) =>
+    this.setState({ [field]: target.value });
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const { updateUsersList } = this.props;
+
+    createUser(this.state)
+      .then(() => {
+        updateUsersList();
+      })
+      .catch(showError);
+  }
+
+  render() {
+    const { changeValue } = this;
+
+    return (
+      <form onSubmit={this.onSubmit}>
+        <label>
+          Имя
+          <input type="text" onChange={changeValue('firstName')} />
+        </label>
+        <label>
+          Фамилия
+          <input type="text" onChange={changeValue('secondName')} />
+        </label>
+        <label>
+          Email
+          <input type="email" onChange={changeValue('email')} />
+        </label>
+        <button>Сохранить</button>
+      </form>
+    );
+  }
 }
 
 export default Form;

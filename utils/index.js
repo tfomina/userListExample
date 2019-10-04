@@ -1,7 +1,5 @@
-const getData = (data, count) => {
-   return data.slice(0, count);
-};
+const showError = err => console.error(err);
 
 module.exports = {
-    getData
+  showError
 };
