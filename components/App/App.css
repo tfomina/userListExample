@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: tomato;
+  padding: 10px;
+}
+
+button {
+  background-color: #7c7eff;
+  padding: 10px;
+  border-radius: 5px;
+  color: #000;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button + button {
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: #6753ff;
+}
+
+input {
+  outline: none !important;
+  border: none;
+  padding: 10px;
+}

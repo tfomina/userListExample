@@ -20,6 +20,23 @@ module.exports = {
         test: /\.(js|jsx)?$/,
         exclude: /(node_modules)/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.css$/i,
+        exclude: /(node_modules)/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              modules: {
+                mode: 'local',
+                localIdentName: '[local]--[hash:base64:5]'
+              }
+            }
+          }
+        ]
       }
     ]
   },

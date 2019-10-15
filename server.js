@@ -2,15 +2,7 @@ const { join } = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// TODO users to data.js
-let users = [
-  {
-    //TODO id
-    firstName: 'Pavel',
-    secondName: 'Efimov',
-    email: 'test@gmail.com'
-  }
-];
+let { users } = require('./data.js');
 
 const app = express();
 
@@ -18,22 +10,28 @@ app.use(bodyParser());
 
 app.use(express.static(join(__dirname, 'dist')));
 
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
   res.sendFile(join(__dirname, 'dist', 'index.html'));
 });
 
-app.get('/users', (req, res) => {
+app.get('/users', (_, res) => {
   res.send(users);
 });
 
 app.post('/user', (req, res) => {
   users.push(req.body);
-
   res.sendStatus(200);
 });
 
 app.delete('/user', (req, res) => {
-  // TODO make something
+  const userId = req.query.id;
+  users = users.filter(user => user.id !== userId);
+  res.sendStatus(200);
+});
+
+app.put('/user', (req, res) => {
+  const userId = req.body.id;
+  users[users.findIndex(user => user.id === userId)] = req.body;
   res.sendStatus(200);
 });
 
