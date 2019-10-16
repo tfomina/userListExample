@@ -53,7 +53,7 @@ export const App = () => {
   return (
     <>
       <UsersList data={users} deleteUser={deleteUser} updateUser={updateUser} />
-      <Form userData={null} onSubmitForm={onSubmitForm} />
+      <Form onSubmitForm={onSubmitForm} />
     </>
   );
 };
