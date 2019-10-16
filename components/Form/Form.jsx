@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { CreateUUID } from 'utils';
 
 import styles from './Form.css';
@@ -84,6 +85,12 @@ export const Form = props => {
   );
 };
 
-Form.defaultProps = {
-  userData: initialUser
+Form.propTypes = {
+  userData: PropTypes.shape({
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string
+  }),
+  onSubmitForm: PropTypes.func.isRequired
 };

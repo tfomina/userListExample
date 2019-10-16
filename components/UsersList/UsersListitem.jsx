@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Form } from './../Form';
 
 import styles from './UsersListItem.css';
@@ -15,8 +16,8 @@ export const UsersListItem = props => {
     setIsEditFormVisible();
   };
 
-  const { item, deleteUser, updateUser } = props;
-  const { id, firstName, lastName, email } = item;
+  const { user, deleteUser, updateUser } = props;
+  const { id, firstName, lastName, email } = user;
 
   return (
     <>
@@ -43,9 +44,20 @@ export const UsersListItem = props => {
         </div>
 
         {isEditFormVisible && (
-          <Form userData={item} onSubmitForm={onSubmitForm} />
+          <Form userData={user} onSubmitForm={onSubmitForm} />
         )}
       </li>
     </>
   );
+};
+
+UsersListItem.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string
+  }).isRequired,
+  deleteUser: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired
 };
